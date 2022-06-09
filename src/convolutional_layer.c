@@ -144,7 +144,12 @@ void cudnn_convolutional_setup(layer *l)
         error("CUDNN < 7 doesn't support groups, please upgrade!");
     }
     #endif
-
+    #if CUDNN_MAJOR >= 8
+    int returnedAlgoCount;
+    cudnnConvolutionFwdAlgoPerf_t       fw_results[2 * CUDNN_CONVOLUTION_FWD_ALGO_COUNT];
+    cudnnConvolutionBwdDataAlgoPerf_t   bd_results[2 * CUDNN_CONVOLUTION_BWD_DATA_ALGO_COUNT];
+    cudnnConvolutionBwdFilterAlgoPerf_t bf_results[2 * CUDNN_CONVOLUTION_BWD_FILTER_ALGO_COUNT];
+ 
     cudnnGetConvolutionForwardAlgorithm(cudnn_handle(),
             l->srcTensorDesc,
             l->weightDesc,
