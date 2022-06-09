@@ -1,6 +1,6 @@
-classes= 20
-train  = /home/pjreddie/data/voc/train.txt
-valid  = /home/pjreddie/data/voc/2007_test.txt
+classes= 352
+train  = /kaggle/working/2007_train.txt
+valid  = /kaggle/working/2007_test.txt
 names = data/voc.names
 backup = backup
 
